@@ -28,4 +28,4 @@ wget https://releases.hashicorp.com/packer/1.3.3/packer_1.3.3_linux_amd64.zip
 sudo mkdir -p /usr/local/packer
 sudo unzip packer_1.3.3_linux_amd64.zip -d /usr/local/packer
 sudo rm /usr/sbin/packer
-export PATH=$PATH:/usr/local/packer
+echo 'export PATH=$PATH:/usr/local/packer' >> ~/.bash_profile
