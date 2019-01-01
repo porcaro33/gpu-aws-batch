@@ -226,7 +226,7 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                  - s3:PutObject
+                  - s3:*
                 Resource:
                   - Fn::Join: ['', ['arn:aws:s3:::', {Ref: S3Bucket}, '/*' ]]
       Path: /
@@ -322,9 +322,9 @@ Outputs:
         Value: !Ref S3Bucket
 
     ECR:
-        Description: ECR for openfoam-docker
+        Description: ECR for AWS Batch
         Value: !Ref ECR
 
     BastionEC2:
-        Description: Bastion EC2 (Amazon Linux)
+        Description: Bastion EC2 (CentOS7)
         Value: !GetAtt BastionEC2.PublicIp
