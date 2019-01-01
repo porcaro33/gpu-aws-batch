@@ -54,7 +54,7 @@ Parameters:
     Description: enter docker image repo name
   InstanceTypeParameter:
     Type: String
-    Default: t2.micro
+    Default: t3.micro
     AllowedValues:
       - t3.micro
       - t3.medium
