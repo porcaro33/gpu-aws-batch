@@ -18,8 +18,13 @@ sudo pip install awscli
 # install docker-ce
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install docker-ce
+sudo yum install docker-ce -y
 sudo systemctl start docker
 
 # install packer
-sudo yum install packer -y
+cd /home/centos
+wget https://releases.hashicorp.com/packer/1.3.3/packer_1.3.3_linux_amd64.zip
+sudo mkdir -p /usr/local/packer
+sudo unzip packer_1.3.3_linux_amd64.zip -d /usr/local/packer
+sudo rm /usr/sbin/packer
+export PATH=$PATH:/usr/local/packer
