@@ -277,13 +277,15 @@ Resources:
             DeleteOnTermination: "true"
       Tags:
         - Key: Name
-          Value: Ubuntu Bastion
+          Value: CnetOS7 Bastion
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash -xe
           cd /home/centos
+          sudo yum install git -y
           git clone https://github.com/porcaro33/gpu-aws-batch.git
           cd gpu-aws-batch
+          chmod +x ./bastion_setup.sh
           ./bastion_setup.sh
 
 Outputs:
