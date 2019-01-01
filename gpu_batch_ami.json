@@ -1,0 +1,34 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-west-2",
+      "vpc_id": "vpc-0011ad577f2e997b8",
+      "subnet_id": "subnet-0d251eabf777ae1c9",
+      "source_ami": "ami-0c1f4871ebaae6d86",
+      "ami_name": "gpu_batch_ami_{{isotime | clean_ami_name}}",
+      "instance_type": "p3.2xlarge",
+      "ssh_username": "ec2-user",
+      "run_tags": {
+              "Name": "gpu_batch_ami_{{isotime | clean_ami_name}}"
+            },
+      "tags": {
+              "Name": "gpu_batch_ami_{{isotime | clean_ami_name}}"
+            },
+      "launch_block_device_mappings": [
+                {
+                    "device_name": "/dev/xvdcz",
+                    "volume_type": "gp2",
+                    "delete_on_termination": "true",
+                    "volume_size": 30
+                }
+              ]
+          }
+      ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "script": "nvidia-docker2-ecs-al2.sh"
+      }
+    ]
+}
