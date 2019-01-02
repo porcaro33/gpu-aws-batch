@@ -1,0 +1,30 @@
+{
+    "computeEnvironmentName": "gpu-aws-batch",
+    "type": "MANAGED",
+    "state": "ENABLED",
+    "computeResources": {
+        "type": "SPOT",
+        "minvCpus": 0,
+        "maxvCpus": 24,
+        "desiredvCpus": 0,
+        "instanceTypes": [
+            "p3.2xlarge"
+        ],
+        "imageId": "ami-XXXXXXXXXX",
+        "subnets": [
+            "subnet-XXXXXXXXXX"
+        ],
+        "securityGroupIds": [
+            "sg-XXXXXXXXXX"
+        ],
+        "ec2KeyPair": "<your-keypair>",
+        "instanceRole": "arn:aws:iam::<account-id>:instance-profile/AmazonEC2ContainerServiceforEC2Role",
+        "tags": {
+            "Name": "gpu-batch: execute",
+            "ClusterName": "gpu-batch"
+        },
+        "bidPercentage": 50,
+        "spotIamFleetRole": "arn:aws:iam::<account-id>:role/AmazonEC2SpotFleetRole"
+    },
+    "serviceRole": "arn:aws:iam::<account-id>:role/AWSBatchServiceRole"
+}
