@@ -1,0 +1,11 @@
+{
+  "jobQueueName": "gpu-jobqueue",
+  "state": "ENABLED",
+  "priority": 1,
+  "computeEnvironmentOrder": [
+    {
+      "order": 1,
+      "computeEnvironment": "gpu-aws-batch"
+    }
+  ]
+}
