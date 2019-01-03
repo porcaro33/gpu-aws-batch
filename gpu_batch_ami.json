@@ -3,8 +3,8 @@
     {
       "type": "amazon-ebs",
       "region": "us-west-2",
-      "vpc_id": "vpc-0011ad577f2e997b8",
-      "subnet_id": "subnet-0d251eabf777ae1c9",
+      "vpc_id": "vpc-XXXXXXXXXX",
+      "subnet_id": "subnet-XXXXXXXXXX",
       "source_ami": "ami-0c1f4871ebaae6d86",
       "ami_name": "gpu_batch_ami_{{isotime | clean_ami_name}}",
       "instance_type": "p3.2xlarge",
