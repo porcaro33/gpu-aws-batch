@@ -1,0 +1,50 @@
+# commands for hands-on
+
+ACCTID=XXXXXXXXX
+REGION=us-west-2
+
+cd gpu-aws-batch
+sudo rm /usr/sbin/packer
+export PATH=$PATH:/usr/local/packer
+
+# check the installed app version
+aws --version
+docker --version
+packer -v
+
+# dockerfile edit, add bucket name into dockerfile
+sudo vi Dockerfile
+
+# docker build
+docker build -t gpu-aws-batch:latest .
+
+# push to ECR
+'aws ecr get-login --no-include-email --region ${REGION}'
+docker tag gpu-aws-batch:latest ${ACCTID}.dkr.ecr.${REGION}.amazonaws.com/gpu-aws-batch
+docker push ${ACCTID}.dkr.ecr.${REGION}.amazonaws.com/gpu-aws-batch
+
+# edit packer def file, add vpc and subnet id
+sudo vi gpu_batch_ami.sh
+
+# build ami
+packer build gpu_batch_ami.json
+
+# edit json files, account id, region, ami id...
+sudo vi job_definition.json
+sudo vi computing_env.json
+sudo vi job_queue.json
+
+# create computing environmemt
+aws --region ${REGION} batch create-compute-environment --cli-input-json file://computing_env.json
+
+# job definition
+aws --region ${REGION} batch register-job-definition --cli-input-json file://job_definition.json
+
+# creating job queue
+aws --region ${REGION} batch create-job-queue --cli-input-json file://job_queue.json
+
+# upload input file
+aws cp ./gpu_run.sh s3://gpu-aws-batch/input/gpu_run.sh
+
+# submit jobs
+./submit_batch.sh
