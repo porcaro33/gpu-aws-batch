@@ -1,0 +1,19 @@
+{
+    "jobDefinitionName": "gpu-job",
+    "type": "container",
+    "parameters": {},
+    "containerProperties": {
+        "image": "<account-id>.dkr.ecr.us-west-2.amazonaws.com/XXXXXXXXXXXXX",
+        "vcpus": 8,
+        "memory": 50000,
+        "command": [],
+        "jobRoleArn": "arn:aws:iam::<account-id>:role/XXXXXXXXXXXXXXXXXXXXXX",
+        "volumes": [],
+        "environment": [],
+        "mountPoints": [],
+        "ulimits": []
+    },
+    "retryStrategy": {
+        "attempts": 3
+    }
+}
