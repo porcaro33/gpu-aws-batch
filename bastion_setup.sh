@@ -9,7 +9,7 @@ sudo yum update -y
 sudo yum install -y kernel-devel-$(uname -r)
 sudo yum groupinstall -y "Development tools"
 sudo yum install -y epel-release
-sudo yum install -y wget tree lsof net-tools traceroute htop git tmux dstat telnet vim bzip2 zip unzip rsync zsh ksh python-pip
+sudo yum install -y wget tree lsof net-tools traceroute htop git tmux dstat telnet vim bzip2 zip unzip rsync zsh ksh zstd python-pip
 
 # install awscli
 sudo pip install --upgrade pip
@@ -24,6 +24,7 @@ sudo systemctl start docker
 
 # install packer
 cd /home/centos
+sudo chown centos:centos gpu-aws-batch --recursive
 wget https://releases.hashicorp.com/packer/1.3.3/packer_1.3.3_linux_amd64.zip
 sudo mkdir -p /usr/local/packer
 sudo unzip packer_1.3.3_linux_amd64.zip -d /usr/local/packer
